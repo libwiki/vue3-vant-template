@@ -7,8 +7,8 @@ import {getToken, removeUserInfo} from "../hooks/user/useUserLogin"; // 配置�
 
 // 创建路由
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL), // 路由模式
-    // history: createWebHashHistory(import.meta.env.BASE_URL), // 路由模式 #
+    // history: createWebHistory(import.meta.env.BASE_URL), // 路由模式
+    history: createWebHashHistory(import.meta.env.BASE_URL), // 路由模式 #
     routes: [...v1], // 注册路由表
 });
 
