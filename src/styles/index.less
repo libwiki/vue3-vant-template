@@ -1,0 +1,28 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+
+.transition-all{
+  transition: all 0.4s;
+}
+.flex-row {
+@apply tw-flex tw-flex-row;
+}
+
+.row-flex-center {
+  .flex-row;
+@apply tw-items-center tw-justify-center;
+}
+
+.flex-col {
+@apply tw-flex tw-flex-row;
+}
+
+.col-flex-center {
+  .flex-col;
+@apply tw-items-center tw-justify-center;
+}

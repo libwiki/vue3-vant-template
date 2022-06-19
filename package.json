@@ -1,0 +1,35 @@
+{
+  "name": "card-system-phone",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vant/use": "^1.4.1",
+    "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
+    "mitt": "^3.0.0",
+    "moment": "^2.29.3",
+    "pinia": "^2.0.14",
+    "qs": "^6.10.3",
+    "vant": "^3.4.9",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@vitejs/plugin-legacy": "^1.8.2",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "autoprefixer": "^10.4.7",
+    "less": "^4.1.2",
+    "postcss": "^8.4.14",
+    "postcss-pxtorem": "^6.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "tailwindcss": "^3.0.24",
+    "vite": "^2.9.9"
+  }
+}
