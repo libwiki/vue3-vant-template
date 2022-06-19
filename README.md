@@ -108,5 +108,5 @@ onUnmounted(() => { // 离开页面时移除事件监听
 
 
 ### 关于全局less的使用
-* 项目在使用的同时依然支持```less```,```vite.config.js css.preprocessorOptions```中自动引入了```src/styles/index.less```文件
+* 项目在使用```Tailwindcss```的同时依然支持```less```,```vite.config.js css.preprocessorOptions```中自动引入了```src/styles/index.less```文件
 * 故如果需要设置任何全局样式，或者使用```less 变量```，在上述文件中设置 即可。页面中可直接使用
