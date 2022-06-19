@@ -1,5 +1,9 @@
 ## Vue 3 + Vite
 
+### 在线预览地址
+[https://libwiki.github.io/vue3-vant-template/](https://libwiki.github.io/vue3-vant-template/)
+
+### 主要依赖
 * [Vue3文档](https://v3.cn.vuejs.org/)
 * [Vant组件库文档](https://vant-contrib.gitee.io/vant/)
 * [VueRouter4路由文档](https://router.vuejs.org/zh/)

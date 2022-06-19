@@ -51,7 +51,7 @@ async function onLogout() {
         </div>
         <div class="tw-px-10">
           <div class="tw-text-18">{{ userStore.userInfo.nickname }}</div>
-          <div class="tw-text-14 tw-text-gray-100">{{ userStore.userInfo.sex === 'male' ? '男生' : '女生' }}</div>
+          <div class="tw-text-14 tw-text-gray-100">{{ userStore.userInfo.sex === 'female' ? '男生' : '女生' }}</div>
         </div>
       </div>
     </div>
