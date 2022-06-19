@@ -52,13 +52,13 @@ loginByWxCode(); // 如果url请求链接存在code参数会认为是微信登�
     <div class="tw-pt-24 tw-px-20 tw-rounded-12 tw-bg-white">
       <van-field
           class="tw-border-b tw-border-gray-100"
-          placeholder="请输入手机号码"
+          placeholder="请输入任意的手机号码"
           type="tel"
           maxlength="11"
           v-model="formData.phone" label="手机号码"/>
       <van-field
           class="tw-border-b tw-border-gray-100"
-          placeholder="验证码"
+          placeholder="任意的验证码"
           type="number"
           v-model="formData.code"
           maxlength="6"
