@@ -42,7 +42,4 @@ https://card.vicpalm.com/sale/card/server/swagger-ui.html
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 
-### 其它资料
 
-* [流程设计图参考](https://www.processon.com/view/link/62825637e0b34d5ac4151e4f)
-* [卡券回收平台接口说明](https://shimo.im/sheets/1lq7Mo1jXzINDVAe/MODOC)
