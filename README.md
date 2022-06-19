@@ -20,26 +20,8 @@ npm run build
 
 ```
 
-### 服务器接口与显示部署域名信息记录
-
-
-* 测试环境（暂无）
-* 正式环境
-```shell
-# 在线部署主要域名
-https://card.vicpalm.com/mobile/
-
-# api地址
-https://card.vicpalm.com/
-
-# api swagger 参考文档
-https://card.vicpalm.com/sale/card/server/swagger-ui.html
-
-```
-
 ### 推荐启动的IDE与插件
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-
 
 
