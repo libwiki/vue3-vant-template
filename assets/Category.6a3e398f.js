@@ -1,0 +1,1 @@
+import{h as n,j as t,E as e,k as r}from"./index.ef3b82cb.js";const u={name:"Category",setup(s){const o=n();return t(()=>{window.emitter.on(e.onRefresh,()=>{console.log("\u4E0B\u62C9\u5237\u65B0\u89E6\u53D1"),o.loading=!1})}),r(()=>{window.emitter.off(e.onRefresh)}),(a,f)=>" \u5206\u7C7B\u9875\u9762 "}};export{u as default};
