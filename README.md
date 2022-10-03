@@ -2,7 +2,7 @@
 
 ### 在线预览地址
 
-<a target="_blank" href="https://libwiki.github.io/vue3-vant-template/">https://libwiki.github.io/vue3-vant-template/</a>
+<a target="_blank" href="https://libwiki.github.io/vue3-vant-template/">https://libwiki.github.io/vue3-vant-template/ </a>
 
 ### 主要依赖
 

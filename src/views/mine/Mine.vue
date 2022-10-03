@@ -3,9 +3,10 @@ import {useUserInfoStore} from "../../store/userStore";
 import {useRefreshStore} from "../../store/refreshStore";
 import {EventsEnum} from "../../events/EventsEnum";
 import {Dialog, Toast} from "vant";
-import {isString, px2rem} from "../../utils/helpers";
+import {px2rem} from "../../utils/helpers";
 import {removeUserInfo} from "../../hooks/user/useUserLogin";
 import {onMounted, onUnmounted} from "vue";
+import _ from "lodash";
 
 
 const userStore = useUserInfoStore();
@@ -29,7 +30,7 @@ async function onLogout() {
     });
     removeUserInfo()
   } catch (e) {
-    if (isString(e)) {
+    if (_.isString(e)) {
       return
     }
     Toast(e.message)

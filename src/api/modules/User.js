@@ -1,4 +1,4 @@
-import Http from "../Http";
+import {Http} from "../Http";
 
 // 用户登录相关
 export default {
