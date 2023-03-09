@@ -3,7 +3,7 @@ import {reactive} from "vue";
 import {useUserLogin} from "../../hooks/user/useUserLogin";
 import {useCountDown} from "../../hooks/useCountDown";
 import wxLogo from "../../assets/icons/wx_logo.png"
-import Config from "../../config/Config";
+import Config from "../../config/Configs";
 import {useRoute} from "vue-router";
 import {isEmpty} from "../../utils/helpers";
 

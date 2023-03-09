@@ -5,7 +5,7 @@ import {computed, ref, watch} from "vue";
 import {useRefreshStore} from "./store/refreshStore";
 import {EventsEnum} from "./events/EventsEnum";
 import {useIosCompatibility} from "./hooks/useIosCompatibility";
-import Config from "./config/Config";
+import Config from "./config/Configs";
 import {useUserLogin} from "./hooks/user/useUserLogin";
 import TabbarConfig from "./config/TabbarConfig";
 

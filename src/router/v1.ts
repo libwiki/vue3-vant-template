@@ -1,7 +1,8 @@
 import Main from "../layouts/Main.vue"
+import {RouteRecordRaw} from "vue-router";
 
 const pageBgColor = "#f8f8f8"; // 默认的页面底色
-export default [
+const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
@@ -25,7 +26,7 @@ export default [
                     title: "首页", // 标题栏
                     tabbar: true, // 是否显示底部导航
                     refresh: true, // 是否开启下拉刷新（开启后还需要页面进行刷新函数处理监听）
-                    // navbar: true, // 是否显示顶部导航
+                    // hideNavbar: true, // 是否隐藏顶部导航
                     // showBack: true, // 顶部导航栏是否显示返回按钮
                     // noToken: true, // 无需登录验证的界面
                     // pageStyle:{}, // 页面默认样式
@@ -90,4 +91,6 @@ export default [
 
         ],
     },
-]
+];
+
+export default routes;

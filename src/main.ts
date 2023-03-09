@@ -1,6 +1,7 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import Vant, {Toast} from 'vant';
+import "./styles/preflight.css"
 import 'vant/lib/index.css';
 import router from './router'
 import {createPinia} from 'pinia'

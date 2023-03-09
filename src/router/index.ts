@@ -1,8 +1,8 @@
 import {createRouter, createWebHashHistory, createWebHistory, useRouter} from "vue-router";
 import v1 from "./v1.js"; // 控制台页面路由
-import Config from "../config/Config";
-import {isEmpty, isFalse} from "../utils/helpers";
-import {getToken, removeUserInfo} from "../hooks/user/useUserLogin"; // 配置信息
+import Config from "../config/Configs";
+import {isEmpty, isFalse} from "@/utils/helpers";
+import {getToken, removeUserInfo} from "@/hooks/user/useUserLogin"; // 配置信息
 
 
 // 创建路由

@@ -1,5 +1,5 @@
 <script setup>
-import {useUserInfoStore} from "../../store/userStore";
+import {useUserStore} from "../../store/userStore";
 import {useRefreshStore} from "../../store/refreshStore";
 import {EventsEnum} from "../../events/EventsEnum";
 import {Dialog, showToast} from "vant";
@@ -9,7 +9,7 @@ import {onMounted, onUnmounted} from "vue";
 import _ from "lodash";
 
 
-const userStore = useUserInfoStore();
+const userStore = useUserStore();
 const refreshStore = useRefreshStore()
 onMounted(() => { // 页面渲染时进行事件监听
   window.emitter.on(EventsEnum.onRefresh, () => {

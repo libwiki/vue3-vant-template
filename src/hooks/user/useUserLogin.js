@@ -1,10 +1,10 @@
 import {isEmpty, isPhone} from "../../utils/helpers";
-import Config from "../../config/Config";
+import Config from "../../config/Configs";
 import {useRouter} from "vue-router";
 import router from "../../router"
 import {showToast} from "vant";
 import User from "../../api/modules/User";
-import {useUserInfoStore} from "../../store/userStore";
+import {useUserStore} from "../../store/userStore";
 
 const StoreUserInfoKey = 'phone_userinfo'; // 当前登录用户信息存贮的key
 const StoreUserTokenKey = 'phone_user_token'; // 当前登录用户token存贮的key
@@ -78,7 +78,7 @@ export function removeUserInfo(isReplace = true) {
 export function useUserLogin() {
     // 路由实例的获取（路由跳转操作使用）
     const router = useRouter(); // 获取router对象
-    const userStore = useUserInfoStore(); // 保存用户登录信息的状态管理器
+    const userStore = useUserStore(); // 保存用户登录信息的状态管理器
 
     /**
      * initUserInfo2Vuex

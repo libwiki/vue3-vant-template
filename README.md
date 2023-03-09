@@ -1,4 +1,6 @@
-## Vue3 + VantUI移动端基础模板
+## Vue3 + typescript + VantUI移动端基础模板
+
+> js版本请查看项目的js分支
 
 ### 在线预览地址
 
@@ -54,7 +56,7 @@ const meta = {
 
 * 1、设置路由meta的refresh选择为true
 * 2、在页面中监听处理下拉刷新事件
-    * 注1：其中 ```window.emitter```对象有```mitt```库提供。具体注册位置在```main.js```文件中
+    * 注1：其中 ```window.emitter```对象有```mitt```库提供。具体注册位置在```main.ts```文件中
     * 注2：```EventsEnum.onRefresh```下拉刷新事件在```App.vue```中触发
 
 ```js
@@ -77,14 +79,14 @@ onUnmounted(() => { // 离开页面时移除事件监听
 
 ### 基础配置文件与导航菜单配置
 
-* 1、```src/config/Config.js```为项目全局基础配置，项目中将直接引用该文件。配置的上游数据来源于项目根目录下的```.env.*```
+* 1、```src/config/Configs.ts```为项目全局基础配置，项目中将直接引用该文件。配置的上游数据来源于项目根目录下的```.env.*```
 * 2、```src/config/TabbarConfig.js```为项目的底部导航栏菜单的名称与图标配置（是否开启导航需要配合路由文件的```meta.tabbar使用```）
 
 ### axios网络请求库的两次封装
 
-* 1、```src/utils/net.js```文件主要为```axios```的实例创建以及前置、后置处理
-* 2、```src/api/Http.js```文件为```axios```实例的易用性封装（实际进行网络请求会直接使用该模块）
-* 3、网络库的具体使用案例请参考：```src/api/modules/User.js````
+* 1、```src/utils/net.ts```文件主要为```axios```的实例创建以及前置、后置处理
+* 2、```src/api/Http.ts```文件为```axios```实例的易用性封装（实际进行网络请求会直接使用该模块）
+* 3、网络库的具体使用案例请参考：```src/api/modules/User.ts````
 
 ### 用户登录功能hooks参考
 
@@ -98,7 +100,7 @@ onUnmounted(() => { // 离开页面时移除事件监听
 * 其中不同的设计稿宽度和项目最大视口均可在```design.config.js```中进行配置
   * ```designWidth``` 设计稿宽度
   * ```maxViewPort``` 最大视口宽度（当使用pc端访问项目页面时，每一个页面的最大宽度，保证在pc的视觉问题）
-  * ```pxToVw``` js中进行像素转换为vw时应用（注：为保证项目模块的统一，该函数会引用至```src/utils/helpers.js px2vw()```，故在项目中需要动态的进行像素转换vw是请使用此处的助手函数）
+  * ```pxToVw``` js中进行像素转换为vw时应用（注：为保证项目模块的统一，该函数会引用至```src/utils/helpers.ts px2vw()```，故在项目中需要动态的进行像素转换vw是请使用此处的助手函数）
   * ```pxToVw``` 项目中使用了```tailwindcss```由于设计稿宽度可能不同，会导致```tailwindcss```默认提供的vw值与项目中的值不一致，故提供了该助手函数进行将```tailwindcss```中的vw转换为项目对应的设计稿的vw，具体用法参考```tailwind.config.js```(注：项目中需要使用到同```px2vw()```)
 
 ### 关于Tailwindcss原子css库的配置说明

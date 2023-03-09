@@ -1,6 +1,6 @@
-<script setup>
-import {EventsEnum} from "../../events/EventsEnum";
-import {useRefreshStore} from "../../store/refreshStore";
+<script lang="ts" setup>
+import {EventsEnum} from "@/events/EventsEnum";
+import {useRefreshStore} from "@/store/refreshStore";
 import {onMounted, onUnmounted} from "vue";
 
 const refreshStore = useRefreshStore()
