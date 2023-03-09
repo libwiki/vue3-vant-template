@@ -80,7 +80,7 @@ onUnmounted(() => { // 离开页面时移除事件监听
 ### 基础配置文件与导航菜单配置
 
 * 1、```src/config/Configs.ts```为项目全局基础配置，项目中将直接引用该文件。配置的上游数据来源于项目根目录下的```.env.*```
-* 2、```src/config/TabbarConfig.js```为项目的底部导航栏菜单的名称与图标配置（是否开启导航需要配合路由文件的```meta.tabbar使用```）
+* 2、```src/config/TabbarConfig.ts```为项目的底部导航栏菜单的名称与图标配置（是否开启导航需要配合路由文件的```meta.tabbar使用```）
 
 ### axios网络请求库的两次封装
 

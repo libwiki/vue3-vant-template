@@ -5,7 +5,14 @@ import classify_light from "../assets/tabbar_icons/classify_light.png";
 import mine_gray from "../assets/tabbar_icons/mine-gray.png";
 import mine_light from "../assets/tabbar_icons/mine_light.png";
 
-export default {
+interface ITabbarItem {
+    title: string
+    routeName: string
+    icon: string
+    iconActive: string
+}
+
+const Tabbar: { defaultIndex: number, data: ITabbarItem[] } = {
     defaultIndex: 0,
     data: [
         {
@@ -27,4 +34,6 @@ export default {
             iconActive: mine_light,
         }
     ]
-}
+};
+
+export default Tabbar;

@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import {ref} from "vue"
 
 const props = defineProps({
@@ -20,7 +20,7 @@ const props = defineProps({
   }
 });
 
-const showPopover = ref(false);
+const showPopover = ref<boolean>(false);
 const emits = defineEmits(['click', 'togglePopover'])
 const onClick = (e) => {
   if (showPopover.value) {
