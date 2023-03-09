@@ -9,30 +9,31 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@vant/use": "^1.4.1",
-    "axios": "^0.27.2",
+    "@vant/use": "^1.5.0",
+    "axios": "^1.3.4",
     "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
-    "moment": "^2.29.3",
-    "pinia": "^2.0.14",
-    "qs": "^6.10.3",
-    "vant": "^3.4.9",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.15"
+    "moment": "^2.29.4",
+    "pinia": "^2.0.33",
+    "qs": "^6.11.1",
+    "vant": "^4.1.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.3",
-    "@vitejs/plugin-legacy": "^1.8.2",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "autoprefixer": "^10.4.7",
-    "gh-pages": "^4.0.0",
-    "less": "^4.1.2",
-    "postcss": "^8.4.14",
-    "postcss-pxtorem": "^6.0.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "tailwindcss": "^3.0.24",
-    "vite": "^2.9.9"
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@vitejs/plugin-legacy": "^4.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
+    "gh-pages": "^5.0.0",
+    "less": "^4.1.3",
+    "postcss": "^8.4.21",
+    "postcss-px-to-viewport": "^1.1.1",
+    "tailwindcss": "^3.2.7",
+    "terser": "^5.16.5",
+    "vite": "^4.1.4"
   }
 }

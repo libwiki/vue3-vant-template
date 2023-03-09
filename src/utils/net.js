@@ -1,15 +1,16 @@
 import axios from 'axios';
 import Config from "../config/Config";
 import {getRefreshToken, getToken, removeUserInfo, setRefreshToken, setToken} from "../hooks/user/useUserLogin";
-import qs from "qs";
 
 // 创建一个 axios请求实例（用于接口的数据请求工具）
 const service = axios.create({
     baseURL: Config.baseUrl,
     timeout: 5000,
-    paramsSerializer(data) {
-        return qs.stringify(data, {arrayFormat: 'indices'})
-    },
+    // paramsSerializer: {
+    //     serialize(params: Record<string, any>) {
+    //         return qs.stringify(params, {arrayFormat: 'indices'})
+    //     }
+    // }
 });
 
 // 发送请求的前置处理

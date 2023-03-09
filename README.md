@@ -91,19 +91,19 @@ onUnmounted(() => { // 离开页面时移除事件监听
 * 1、用户登录等相关功能均在```src/hooks/user/useUserLogin.js```文件中处理了（该文件仅是一个hooks使用案例，抛砖引玉，可移除。如果需要使用请完善内部的登录、退出、请求用户信息函数的功能）
 
 
-### rem适配说明
+### vw适配说明
 * [rem布局适配是什么？](https://www.jianshu.com/p/8feec432c01a)
-* 项目使用rem进行移动端的布局大小适配，项目中书写的css中```px```单位的值将自动转换为```rem```，（具体的转换配置参考：```postcss.config.js```）
-* ```px => rem```的转换倍数 参考：```src/utils/flexible.js```
+* 项目使用vw进行移动端的布局大小适配，项目中书写的css中```px```单位的值将自动转换为```vw```，（具体的转换配置参考：```postcss.config.js```）
+* ```px => vw```的转换倍数 参考：```src/utils/flexible.js```
 * 其中不同的设计稿宽度和项目最大视口均可在```design.config.js```中进行配置
   * ```designWidth``` 设计稿宽度
   * ```maxViewPort``` 最大视口宽度（当使用pc端访问项目页面时，每一个页面的最大宽度，保证在pc的视觉问题）
-  * ```pxToRem``` js中进行像素转换为rem时应用（注：为保证项目模块的统一，该函数会引用至```src/utils/helpers.js px2rem()```，故在项目中需要动态的进行像素转换rem是请使用此处的助手函数）
-  * ```twRem2Rem``` 项目中使用了```tailwindcss```由于设计稿宽度可能不同，会导致```tailwindcss```默认提供的rem值与项目中的值不一致，故提供了该助手函数进行将```tailwindcss```中的rem转换为项目对应的设计稿的rem，具体用法参考```tailwind.config.js```(注：项目中需要使用到同```px2rem()```)
+  * ```pxToVw``` js中进行像素转换为vw时应用（注：为保证项目模块的统一，该函数会引用至```src/utils/helpers.js px2vw()```，故在项目中需要动态的进行像素转换vw是请使用此处的助手函数）
+  * ```pxToVw``` 项目中使用了```tailwindcss```由于设计稿宽度可能不同，会导致```tailwindcss```默认提供的vw值与项目中的值不一致，故提供了该助手函数进行将```tailwindcss```中的vw转换为项目对应的设计稿的vw，具体用法参考```tailwind.config.js```(注：项目中需要使用到同```px2vw()```)
 
 ### 关于Tailwindcss原子css库的配置说明
 * 项目中的配置请查看：```tailwind.config.js```文件
-* 项目中使用的```spacing```与```tailwindcss```的官方有所区别，使用了```0~96px => rem```的数值。（需要改动可自行配置即可）
+* 项目中使用的```spacing```与```tailwindcss```的官方有所区别，使用了```0~96px => vw```的数值。（需要改动可自行配置即可）
 * 注：项目中页面如果发现```Tailwindcss```无效问题，只需要在```style```区块中提供任意的css即可，例：```.t{}```
 
 

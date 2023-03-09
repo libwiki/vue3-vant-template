@@ -2,7 +2,7 @@ import {isEmpty, isPhone} from "../../utils/helpers";
 import Config from "../../config/Config";
 import {useRouter} from "vue-router";
 import router from "../../router"
-import {Toast} from "vant";
+import {showToast} from "vant";
 import User from "../../api/modules/User";
 import {useUserInfoStore} from "../../store/userStore";
 
@@ -150,10 +150,10 @@ export function useUserLogin() {
             if (!isPhone(phone)) {
                 throw new Error('请输入正确的手机号码')
             }
-            Toast("发送验证码成功");
+            showToast("发送验证码成功");
             return true
         } catch (e) {
-            Toast(e.message)
+            showToast(e.message)
             return false
         }
     }
@@ -179,13 +179,13 @@ export function useUserLogin() {
                 nickname: username, // 昵称
             }
             saveUserInfo(data)
-            Toast('登录成功');
+            showToast('登录成功');
             if (replace) { // 跳转首页
                 await router.replace({name: Config.homeRouteName})
             }
             return true;
         } catch (e) {
-            Toast(e.message)
+            showToast(e.message)
         }
         return false;
     }
@@ -207,13 +207,13 @@ export function useUserLogin() {
                 throw new Error(res.message)
             }
             saveUserInfo(res.data || {})
-            Toast('登录成功');
+            showToast('登录成功');
             if (replace) {
                 await router.replace({name: Config.homeRouteName})
             }
             return true;
         } catch (e) {
-            Toast(e.message)
+            showToast(e.message)
         }
         return false;
     }
@@ -229,7 +229,7 @@ export function useUserLogin() {
             // const res = await User.logout();
             removeUserInfo(isReplace);
         } catch (e) {
-            Toast(e.message);
+            showToast(e.message);
             removeUserInfo(isReplace);
         }
     }

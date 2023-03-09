@@ -2,14 +2,10 @@ import designConfig from '../../design.config';
 import CryptoJS from "crypto-js"
 import _ from "lodash";
 
-
-export function px2rem(variable, unit = 'rem') {
-    return designConfig.pxToRem(variable, unit)
+export function px2vw(variable, unit = 'vw') {
+    return designConfig.pxToVw(variable, unit)
 }
 
-export function twRem2Rem(variable, unit = 'rem') {
-    return designConfig.twRemToRem(variable, unit)
-}
 
 export function canSetParams(method = 'get') {
     return ['get', 'delete', 'head'].includes(method.toLowerCase())
@@ -78,7 +74,7 @@ export function isFalse(value) {
 export function isTrue(value) {
     if (_.isBoolean(value)) {
         return value;
-    } else if (_.isNull(value)) {
+    } else if (_.isNull(value) || _.isUndefined(value)) {
         return false;
     } else if (isNumeric(value)) {
         return Number(value) !== 0;

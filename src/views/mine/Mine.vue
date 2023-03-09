@@ -2,8 +2,8 @@
 import {useUserInfoStore} from "../../store/userStore";
 import {useRefreshStore} from "../../store/refreshStore";
 import {EventsEnum} from "../../events/EventsEnum";
-import {Dialog, Toast} from "vant";
-import {px2rem} from "../../utils/helpers";
+import {Dialog, showToast} from "vant";
+import {px2vw} from "../../utils/helpers";
 import {removeUserInfo} from "../../hooks/user/useUserLogin";
 import {onMounted, onUnmounted} from "vue";
 import _ from "lodash";
@@ -33,7 +33,7 @@ async function onLogout() {
     if (_.isString(e)) {
       return
     }
-    Toast(e.message)
+    showToast(e.message)
   }
 }
 </script>
@@ -46,8 +46,8 @@ async function onLogout() {
         <div>
           <van-image
               round
-              :width="px2rem(50)"
-              :height="px2rem(50)"
+              :width="px2vw(50)"
+              :height="px2vw(50)"
               src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"/>
         </div>
         <div class="tw-px-10">

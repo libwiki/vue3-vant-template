@@ -1,5 +1,5 @@
 <script setup>
-import {isFalse, isTrue, px2rem} from "./utils/helpers";
+import {isFalse, isTrue, px2vw} from "./utils/helpers";
 import {useRoute, useRouter} from "vue-router";
 import {computed, ref, watch} from "vue";
 import {useRefreshStore} from "./store/refreshStore";
@@ -99,7 +99,7 @@ const onBack = () => {
           v-if="hasNavBar"
           @click-left="onBack">
         <template #left>
-          <van-icon v-if="showBack" :size="px2rem(17)" name="arrow-left" color="#27292B"/>
+          <van-icon v-if="showBack" :size="px2vw(17)" name="arrow-left" color="#27292B"/>
         </template>
         <template #title>
           <span class="tw-text-dark tw-text-17 tw-font-normal tw-leading-26">
