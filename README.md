@@ -35,6 +35,12 @@ npm run build
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
+
+### 创建页面 样例参考
+
+* 案例位置：```src/login/```
+  ![页面分离样例参考](docs/image/page-demo.png)
+
 ### 路由```meta```页面配置说明
 
 > 页面路由的```meta```参数配置均在```App.vue```中使用到，如果需要自定义可自行编辑逻辑
@@ -88,9 +94,12 @@ onUnmounted(() => { // 离开页面时移除事件监听
 * 2、```src/api/Http.ts```文件为```axios```实例的易用性封装（实际进行网络请求会直接使用该模块）
 * 3、网络库的具体使用案例请参考：```src/api/modules/User.ts````
 
-### 用户登录功能hooks参考
+### 用户登录登录后的token、登录信息等相关存贮处理
 
-* 1、用户登录等相关功能均在```src/hooks/user/useUserLogin.js```文件中处理了（该文件仅是一个hooks使用案例，抛砖引玉，可移除。如果需要使用请完善内部的登录、退出、请求用户信息函数的功能）
+* 1、用户的token存贮逻辑位于```src/utils/AuthHelpers.ts```文件中
+* 2、其中```AuthHelpers.ts syncUserinfo()```方法是将```localStorage```的用户信息同步到```store```中，在```App.vue```
+  中调用，故如果用户登录成功则```store```（```src/store/userStore.ts```）中即可获取到用户信息，无须从```localStorage```取。
+* 3、```Pinia```状态管理器的用法参考上面的用户信息的处理，存值参考参考：```src/utils/AuthHelpers.ts syncUserinfo()```方法。
 
 
 ### vw适配说明
@@ -112,3 +121,10 @@ onUnmounted(() => { // 离开页面时移除事件监听
 ### 关于全局less的使用
 * 项目在使用```Tailwindcss```的同时依然支持```less```,```vite.config.js css.preprocessorOptions```中自动引入了```src/styles/index.less```文件
 * 故如果需要设置任何全局样式，或者使用```less 变量```，在上述文件中设置 即可。页面中可直接使用
+
+### 内置的hooks说明```src/hooks/```
+
+* ```usePageMeta```分页参数处理
+* ```useSimpleFormMeta```简单的表单数据，仅仅实现了重置功能
+* ```useFormMeta```繁杂的表单数据处理钩子，实现了重置、验证、弹框开关功能
+* ```useCountDown```倒计时功能） 

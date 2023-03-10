@@ -6,11 +6,11 @@ import {useRefreshStore} from "./store/refreshStore";
 import {EventsEnum} from "./events/EventsEnum";
 import {useIosCompatibility} from "./hooks/useIosCompatibility";
 import Config from "./config/Configs";
-import {useUserLogin} from "./hooks/user/useUserLogin";
 import TabbarConfig from "./config/TabbarConfig";
+import AuthHelpers from "@/utils/AuthHelpers";
 
 const $route = useRoute();
-useUserLogin().initUserInfo(false); // 初始化登录用户的信息到store中
+AuthHelpers.syncUserinfo(false); // 初始化登录用户的信息到store中
 useIosCompatibility(); // ios适配
 
 

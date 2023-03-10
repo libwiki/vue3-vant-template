@@ -1,14 +1,16 @@
-<script setup>
-import {useUserStore} from "../../store/userStore";
-import {useRefreshStore} from "../../store/refreshStore";
-import {EventsEnum} from "../../events/EventsEnum";
-import {Dialog, showToast} from "vant";
-import {px2vw} from "../../utils/helpers";
-import {removeUserInfo} from "../../hooks/user/useUserLogin";
+<script lang="ts" setup>
+import {useUserStore} from "@/store/userStore";
+import {useRefreshStore} from "@/store/refreshStore";
+import {EventsEnum} from "@/events/EventsEnum";
+import {showConfirmDialog, showToast} from "vant";
+import {px2vw} from "@/utils/helpers";
 import {onMounted, onUnmounted} from "vue";
 import _ from "lodash";
+import AuthHelpers from "@/utils/AuthHelpers";
+import {useRouter} from "vue-router";
+import Configs from "@/config/Configs";
 
-
+const router = useRouter();
 const userStore = useUserStore();
 const refreshStore = useRefreshStore()
 onMounted(() => { // 页面渲染时进行事件监听
@@ -24,11 +26,12 @@ onUnmounted(() => { // 离开页面时移除事件监听
 
 async function onLogout() {
   try {
-    await Dialog.confirm({
+    await showConfirmDialog({
       title: '提示',
       message: '确定退出登录吗？',
     });
-    removeUserInfo()
+    AuthHelpers.removeUserInfo()
+    await router.replace({name: Configs.loginRouteName})
   } catch (e) {
     if (_.isString(e)) {
       return
@@ -51,8 +54,10 @@ async function onLogout() {
               src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"/>
         </div>
         <div class="tw-px-10">
-          <div class="tw-text-18">{{ userStore.userInfo.nickname }}</div>
-          <div class="tw-text-14 tw-text-gray-100">{{ userStore.userInfo.sex === 'female' ? '男生' : '女生' }}</div>
+          <div class="tw-text-18">{{ userStore.userinfo.info.nickname }}</div>
+          <div class="tw-text-14 tw-text-gray-100">
+            {{ userStore.userinfo.info.sex === 'female' ? '男生' : '女生' }}
+          </div>
         </div>
       </div>
     </div>

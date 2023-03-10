@@ -1,14 +1,15 @@
 <script setup>
-import {reactive} from "vue";
-import {useUserLogin} from "../../hooks/user/useUserLogin";
-import {useCountDown} from "../../hooks/useCountDown";
+import {onMounted} from "vue";
+import {useCountDown} from "@/hooks/useCountDown";
 import wxLogo from "../../assets/icons/wx_logo.png"
 import Config from "../../config/Configs";
 import {useRoute} from "vue-router";
-import {isEmpty} from "../../utils/helpers";
+import {isEmpty} from "@/utils/helpers";
+import {useLogin} from "@/views/login/useLogin";
+import {isArray} from "lodash";
 
 const route = useRoute();
-const loginHelper = useUserLogin();
+const loginHelper = useLogin();
 const countDownHelper = useCountDown();
 countDownHelper.recover(); // 保证用户刷新页面时恢复倒计时
 
@@ -17,17 +18,13 @@ const onSendCode = async () => {
   if (countDownHelper.data.value > 0) { // 倒计时内禁止频繁发送短信
     return;
   }
-  const success = await loginHelper.sendCode(formData.phone)
+  const success = await loginHelper.sendCode(loginHelper.formData.value.username)
   if (success) { // 启动一个60s的倒计时
     countDownHelper.start(60)
   }
 
 }
 
-const formData = reactive({
-  phone: "",
-  code: "",
-});
 const onWxLogin = () => {
   const appId = Config.wxAppId;
   const href = window.location.href.replace(window.location.search, '')
@@ -40,10 +37,14 @@ const loginByWxCode = () => {
   if (isEmpty(code)) {
     return
   }
-  loginHelper.wxLogin(code)
+  if (isArray(code)) {
+    loginHelper.wxLogin(code[0])
+  } else {
+    loginHelper.wxLogin(code)
+  }
 }
-loginByWxCode(); // 如果url请求链接存在code参数会认为是微信登录
 
+onMounted(loginByWxCode); // 如果url请求链接存在code参数会认为是微信登录
 
 </script>
 
@@ -55,12 +56,12 @@ loginByWxCode(); // 如果url请求链接存在code参数会认为是微信登�
           placeholder="请输入任意的手机号码"
           type="tel"
           maxlength="11"
-          v-model="formData.phone" label="手机号码"/>
+          v-model="loginHelper.formData.value.username" label="手机号码"/>
       <van-field
           class="tw-border-b tw-border-gray-100"
           placeholder="任意的验证码"
           type="number"
-          v-model="formData.code"
+          v-model="loginHelper.formData.value.code"
           maxlength="6"
           label="验证码">
         <template #button>
@@ -73,7 +74,7 @@ loginByWxCode(); // 如果url请求链接存在code参数会认为是微信登�
         </template>
       </van-field>
       <div class="tw-pt-50 tw-w-full">
-        <VanButton @click="loginHelper.login(formData.phone,formData.code)" type="danger" round block>
+        <VanButton @click="loginHelper.login()" type="danger" round block>
           立即登录
         </VanButton>
       </div>
