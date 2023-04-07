@@ -1,15 +1,11 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import Vant, {Dialog, Toast} from 'vant';
+import Vant from 'vant';
 import "./styles/preflight.css"
 import 'vant/lib/index.css';
 import router from './router'
 import {createPinia} from 'pinia'
-import mitt from "mitt";
 import "./styles/tailwind.index.css"
-// 简单事件处理
-// 文档参考：https://github.com/developit/mitt
-window.emitter = mitt();
 
 
 const app = createApp(App)

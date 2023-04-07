@@ -1,15 +1,15 @@
 <script setup>
 import {ref} from "vue";
 import Ticket from "../../../components/coupon/Ticket.vue";
-import {useRefreshStore} from "../../../store/refreshStore";
-import {EventsEnum} from "../../../events/EventsEnum";
 
-const refreshStore = useRefreshStore()
-window.emitter.on(EventsEnum.onRefresh, () => {
+import {useRefresh} from "@/hooks/useRefresh";
+
+const refreshHelper = useRefresh();
+
+refreshHelper.onRefresh(v => { // 监听处理页面的下拉刷新事件
   console.log('下拉刷新触发')
-  refreshStore.loading = false; // 关闭下拉刷新动画
-}); // 监听处理页面的下拉刷新事件
-
+  refreshHelper.toggleLoading(false) // 关闭下拉刷新动画
+})
 const tableData = ref([]);
 const initData = async () => {
   tableData.value = [

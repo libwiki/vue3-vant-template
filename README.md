@@ -62,24 +62,16 @@ const meta = {
 
 * 1、设置路由meta的refresh选择为true
 * 2、在页面中监听处理下拉刷新事件
-    * 注1：其中 ```window.emitter```对象有```mitt```库提供。具体注册位置在```main.ts```文件中
-    * 注2：```EventsEnum.onRefresh```下拉刷新事件在```App.vue```中触发
+  * 注：事件通知由```rxjs```进行调度处理
 
 ```js
-import {EventsEnum} from "@/events/EventsEnum";
-import {useRefreshStore} from "@/store/refreshStore";
-import {onMounted, onUnmounted} from "vue";
+import {useRefresh} from "@/hooks/useRefresh";
 
-const refreshStore = useRefreshStore()
-onMounted(() => { // 页面渲染时进行事件监听
-    window.emitter.on(EventsEnum.onRefresh, () => {
-        console.log('下拉刷新触发')
-        refreshStore.loading = false; // 关闭下拉刷新动画
-    }); // 监听处理页面的下拉刷新事件
-})
+const refreshHelper = useRefresh();
 
-onUnmounted(() => { // 离开页面时移除事件监听
-    window.emitter.off(EventsEnum.onRefresh)
+refreshHelper.onRefresh(v => { // 监听处理页面的下拉刷新事件
+  console.log('下拉刷新触发')
+  refreshHelper.toggleLoading(false) // 关闭下拉刷新动画
 })
 ```
 

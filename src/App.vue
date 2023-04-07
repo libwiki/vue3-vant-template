@@ -3,11 +3,11 @@ import {isFalse, isTrue, px2vw} from "./utils/helpers";
 import {useRoute, useRouter} from "vue-router";
 import {computed, ref, watch} from "vue";
 import {useRefreshStore} from "./store/refreshStore";
-import {EventsEnum} from "./events/EventsEnum";
 import {useIosCompatibility} from "./hooks/useIosCompatibility";
 import Config from "./config/Configs";
 import TabbarConfig from "./config/TabbarConfig";
 import AuthHelpers from "@/utils/AuthHelpers";
+import {refreshSubInstance} from "@/rxjs/RefreshSubject";
 
 const $route = useRoute();
 AuthHelpers.syncUserinfo(false); // 初始化登录用户的信息到store中
@@ -60,7 +60,7 @@ const refreshStore = useRefreshStore()
 
 function onRefresh() {
   // 触发下拉刷新页面，对应的页面需要实现下拉刷新的具体逻辑
-  window.emitter.emit(EventsEnum.onRefresh);
+  refreshSubInstance.next();
 }
 
 const configProviderClass = computed(() => {

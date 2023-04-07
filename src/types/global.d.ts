@@ -1,12 +1,10 @@
 import 'vue-router'
-import {Emitter} from "mitt";
 
 export {}
 declare global {
     declare module '*.js';
 
     interface Window {
-        emitter: Emitter<any>;
         _configs: any;
     }
 }

@@ -1,27 +1,21 @@
 <script lang="ts" setup>
 import {useUserStore} from "@/store/userStore";
-import {useRefreshStore} from "@/store/refreshStore";
-import {EventsEnum} from "@/events/EventsEnum";
 import {showConfirmDialog, showToast} from "vant";
 import {px2vw} from "@/utils/helpers";
-import {onMounted, onUnmounted} from "vue";
 import _ from "lodash";
 import AuthHelpers from "@/utils/AuthHelpers";
 import {useRouter} from "vue-router";
 import Configs from "@/config/Configs";
+import {useRefresh} from "@/hooks/useRefresh";
 
 const router = useRouter();
 const userStore = useUserStore();
-const refreshStore = useRefreshStore()
-onMounted(() => { // 页面渲染时进行事件监听
-  window.emitter.on(EventsEnum.onRefresh, () => {
-    console.log('下拉刷新触发')
-    refreshStore.loading = false; // 关闭下拉刷新动画
-  }); // 监听处理页面的下拉刷新事件
-})
 
-onUnmounted(() => { // 离开页面时移除事件监听
-  window.emitter.off(EventsEnum.onRefresh)
+const refreshHelper = useRefresh();
+
+refreshHelper.onRefresh(v => { // 监听处理页面的下拉刷新事件
+  console.log('下拉刷新触发')
+  refreshHelper.toggleLoading(false) // 关闭下拉刷新动画
 })
 
 async function onLogout() {
