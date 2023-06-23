@@ -4,6 +4,11 @@ import {refreshSubInstance} from "@/rxjs/RefreshSubject";
 import {SubscribeObserverFunc} from "@/rxjs/BaseSubject";
 import {useRefreshStore} from "@/store/refreshStore";
 
+/**
+ * 下拉刷新功能助手，需要依赖 useRefreshStore
+ * useRefreshStore 用于保存整体的，唯一的刷新状态
+ * @param autoRelease
+ */
 export function useRefresh(autoRelease: boolean = true) {
     const refreshStore = useRefreshStore()
     const state = reactive<{
@@ -35,6 +40,15 @@ export function useRefresh(autoRelease: boolean = true) {
         loading: refreshStore.loading,
         subscribe,
         onRefresh: subscribe,
+        onAutoRefresh(func: SubscribeObserverFunc<boolean>) {
+            unSubscribe();
+            const sub = refreshSubInstance.subscribe(async (val) => {
+                await func(val);
+                refreshStore.toggleLoading(false)
+            })
+            state.subject = sub;
+            return sub;
+        },
         unSubscribe,
         getSubject() {
             return state.subject

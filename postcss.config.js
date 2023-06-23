@@ -4,6 +4,7 @@ module.exports = {
     plugins: {
         tailwindcss: {},
         autoprefixer: {},
+        'postcss-100vh-fix': {}, // 解决ios100vh包含导航栏，地址栏的问题
         'postcss-px-to-viewport-8-plugin': {
             unitToConvert: 'px',
             viewportWidth: config.designWidth,

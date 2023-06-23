@@ -1,33 +1,12 @@
-// ios兼容性处理
-import {onMounted, watch} from "vue";
-import {useWindowSize} from "@vant/use";
+import {onMounted} from "vue";
 
+// ios兼容性处理
 export function useIosCompatibility() {
-    const {width, height} = useWindowSize();
-    watch([width, height], () => {
-        initIosHeight()
-    });
     onMounted(() => {
-        initIosHeight()
         prohibitScaling();
         // visibilityChange();
     })
 
-    // 解决IOS端100%高度问题
-    function initIosHeight() {
-        // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-        // Then we set the value in the --vh custom property to the root of the document
-        const vh = window.innerHeight, vw = window.innerWidth
-        document.documentElement.style.setProperty('--vh', `${vh}px`)
-        document.documentElement.style.setProperty('--vw', `${vw}px`)
-        // We listen to the resize event
-        window.addEventListener('resize', () => {
-            // We execute the same script as before
-            const vh = window.innerHeight, vw = window.innerWidth;
-            document.documentElement.style.setProperty('--vh', `${vh}px`)
-            document.documentElement.style.setProperty('--vw', `${vw}px`)
-        })
-    }
 
     function visibilityChange() {
         document.addEventListener('visibilitychange', () => {
@@ -40,15 +19,20 @@ export function useIosCompatibility() {
 
     // ios双击缩放禁止
     function prohibitScaling() {
+        // https://developer.mozilla.org/zh-CN/docs/Web/CSS/touch-action
+        document.documentElement.style.touchAction = 'manipulation';
         document.addEventListener('touchstart', function (event) {
             if (event.touches.length > 1) {
                 event.preventDefault();
             }
         });
+        document.addEventListener('touchmove', function (event) {
+            event.preventDefault(); // 禁止左右滑动退回上一页处理（作为css  touch-action: manipulation; 的兜底）
+        }, {passive: false});
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (event) {
             let now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
+            if (now - lastTouchEnd <= 200) {
                 event.preventDefault();
             }
             lastTouchEnd = now;
@@ -56,5 +40,20 @@ export function useIosCompatibility() {
         document.addEventListener('gesturestart', function (event) {
             event.preventDefault();
         });
-    };
+        document.addEventListener('click', function (event) {
+            const t = event.target as HTMLElement
+            if (t && t.nodeName && t.nodeName.toUpperCase() === "INPUT") {
+                // 排除input组件的事件委托（禁用会影响到文件上传组件 <input type='file'/>）
+            } else {
+                event.preventDefault();
+            }
+
+        });
+        document.addEventListener('dblclick', function (event) {
+            event.preventDefault();
+        });
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+    }
 }

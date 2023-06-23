@@ -15,7 +15,6 @@ export const useUserStore = defineStore("userInfo", () => {
             headImg: "",
             name: "",
             nickname: "",
-            email: "",
             sex: EGender.male,
             status: 1,
         }

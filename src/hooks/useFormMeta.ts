@@ -11,9 +11,14 @@ import {FormInstance} from "vant"
  * @param show {boolean} 表单模态框默认状态
  * @returns {{formRef: ?any, _formData: {show:boolean,data:T}, onValidate: (function(): Promise<boolean>), formData:{show:boolean,data:T},rules:R, getFormData: (function(): T), toggleModal: (function(show:boolean, row:*=): boolean)}}
  */
-export function useFormMeta<T extends any>(data: Partial<T> = {}, rulesData: Partial<any> = {}, show = false) {
+export function useFormMeta<T extends any>(data: T, rulesData: Partial<any> = {}, show = false) {
     // 表单数据
-    const formData = reactive({
+    const formData = reactive<{
+        show: boolean,
+        loading: boolean,
+        data: T
+    }>({
+        loading: false,
         show,
         data,
     });
@@ -51,6 +56,10 @@ export function useFormMeta<T extends any>(data: Partial<T> = {}, rulesData: Par
             // 存在表单，则重置表单的验证状态
             formRef.value?.resetValidation();
             return formData.show;
+        },
+        toggleLoading(loading: boolean) { //
+            formData.loading = _.isBoolean(show) ? loading : !formData.loading;
+            return formData.loading;
         }
     }
 }
