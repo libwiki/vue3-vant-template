@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'home',
                 meta: {
                     title: "首页", // 标题栏
-                    tabbar: true, // 是否显示底部导航
+                    tabBar: true, // 是否显示底部导航
                     refresh: true, // 是否开启下拉刷新（开启后还需要页面进行刷新函数处理监听）
                     // hideNavbar: true, // 是否隐藏顶部导航
                     // showBack: true, // 顶部导航栏是否显示返回按钮
@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'category',
                 meta: {
                     title: "分类", // 标题栏
-                    tabbar: true, // 是否显示底部导航
+                    tabBar: true, // 是否显示底部导航
                     refresh: true, // 开启下拉刷新
                     pageBgColor, // 页面背景色
 
@@ -69,7 +69,7 @@ const routes: RouteRecordRaw[] = [
                 name: 'mine',
                 meta: {
                     title: "我的", // 标题栏
-                    tabbar: true, // 是否显示底部导航
+                    tabBar: true, // 是否显示底部导航
                     refresh: true, // 开启下拉刷新
                     pageBgColor, // 页面背景色
 

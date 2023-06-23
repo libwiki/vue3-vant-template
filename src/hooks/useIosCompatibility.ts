@@ -26,9 +26,6 @@ export function useIosCompatibility() {
                 event.preventDefault();
             }
         });
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault(); // 禁止左右滑动退回上一页处理（作为css  touch-action: manipulation; 的兜底）
-        }, {passive: false});
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (event) {
             let now = (new Date()).getTime();

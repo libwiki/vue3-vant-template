@@ -1,15 +1,19 @@
-<script setup>
-import {isFalse, isTrue, px2vw} from "./utils/helpers";
+<script lang="ts" setup>
+import {isFalse, isTrue, px2vw} from "@/utils/helpers";
 import {useRoute, useRouter} from "vue-router";
 import {computed, ref, watch} from "vue";
-import {useRefreshStore} from "./store/refreshStore";
-import {useIosCompatibility} from "./hooks/useIosCompatibility";
+import {useRefreshStore} from "@/store/refreshStore";
+import {useIosCompatibility} from "@/hooks/useIosCompatibility";
 import Config from "./config/Configs";
 import TabbarConfig from "./config/TabbarConfig";
 import AuthHelpers from "@/utils/AuthHelpers";
 import {refreshSubInstance} from "@/rxjs/RefreshSubject";
+import SizeBox from "@/components/SizeBox.vue";
+import {useLockPageScroll} from "@/hooks/useLockPageScroll";
+import SysSetting from "@/config/SysSetting";
 
 const route = useRoute();
+const {scrollRef} = useLockPageScroll(SysSetting.lockBodyScroll);
 AuthHelpers.syncUserinfo(false); // 初始化登录用户的信息到store中
 useIosCompatibility(); // ios适配
 
@@ -26,7 +30,7 @@ const showBack = computed(() => {
 })
 // 是否有底部菜单栏
 const hasTabBar = computed(() => {
-  return isTrue(route.meta.tabbar);
+  return isTrue(route.meta.tabBar);
 });
 const routeName = computed(() => {
   return route.name;
@@ -67,8 +71,6 @@ const configProviderClass = computed(() => {
   return {
     'tw-max-w-view-port': true,
     'config-provider': true,
-    'padding-nav-bar': hasNavBar.value,
-    'padding-tab-bar': hasTabBar.value
   }
 });
 const router = useRouter();
@@ -82,15 +84,11 @@ const onBack = () => {
 </script>
 
 <template>
-  <van-pull-refresh
-      class="tw-px-position-center tw-min-h-screen"
-      :disabled="isFalse(route.meta.refresh)"
-      v-model="refreshStore.loading"
-      @refresh="onRefresh">
-    <van-config-provider
-        :class="configProviderClass"
-        :style="bodyStyle"
-        :theme-vars="themeVars">
+  <van-config-provider
+      :class="configProviderClass"
+      :style="bodyStyle"
+      :theme-vars="themeVars">
+    <div class="app-main">
       <!--顶部导航栏 start-->
       <van-nav-bar
           fixed
@@ -108,7 +106,24 @@ const onBack = () => {
         </template>
       </van-nav-bar>
       <!--顶部导航栏 end-->
-      <router-view></router-view>
+
+      <!--顶部导航栏的填充 start-->
+      <SizeBox class="nav-bar-placeholder-box" v-if="hasNavBar"/>
+      <!--顶部导航栏的填充 end-->
+
+
+      <div ref="scrollRef" class="tw-flex-1 tw-overflow-y-auto">
+        <van-pull-refresh
+            :disabled="isFalse($route.meta.refresh)"
+            v-model="refreshStore.loading"
+            @refresh="onRefresh">
+          <router-view></router-view>
+        </van-pull-refresh>
+      </div>
+
+      <!--底部菜单栏的填充 start-->
+      <SizeBox :height="50" v-if="hasTabBar"/>
+      <!--底部菜单栏的填充 end-->
 
       <!--底部菜单栏 start-->
       <van-tabbar
@@ -123,24 +138,28 @@ const onBack = () => {
         </van-tabbar-item>
       </van-tabbar>
       <!--底部菜单栏 end-->
-
-    </van-config-provider>
-  </van-pull-refresh>
+    </div>
+  </van-config-provider>
 </template>
 
 <style lang="less" scoped>
 .config-provider {
   z-index: -1;
-  min-height: 100vh;
+  user-select: none;
   box-sizing: border-box;
 
-  &.padding-nav-bar {
-  @apply tw-pt-46; // vant顶部导航栏默认高度为46px（这里使用了tailwindcss 的@apply指令）
+  .app-main {
+    height: 100vh;
+    .flex-col();
+    width: 100%;
+
+
+    .nav-bar-placeholder-box { // 顶部导航栏的填充
+      height: var(--van-nav-bar-height);
+    }
   }
 
-  &.padding-tab-bar {
-  @apply tw-pb-50; // vant底部导航栏默认高度为50px（这里使用了tailwindcss 的@apply指令）
-  }
+
 }
 
 

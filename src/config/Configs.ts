@@ -6,22 +6,11 @@
 import {IConfigs} from "@/types/configs";
 import _ from "lodash";
 
-const isDev = import.meta.env.DEV;
-
-
-function getBaseUrl() {
-    if (isDev) {
-        return import.meta.env.VITE_API_HOST || '/';
-    }
-    const l = window.location;
-    return `${l.protocol}//${l.host}/`
-}
-
 // 配置信息
 const Configs: IConfigs = {
-    isDev,
-    debug: import.meta.env.VITE_DEBUG || false,
-    baseUrl: getBaseUrl(),
+    isDev: import.meta.env.DEV || false,
+    debug: getDebug(),
+    baseUrl: import.meta.env.VITE_API_HOST || '/',
     version: import.meta.env.VITE_VERSION || '1.0.0',
     siteName: import.meta.env.VITE_SITE_NAME || 'vue3-system-admin',
     homeRouteName: import.meta.env.VITE_HOME_NAME || 'home',
@@ -37,3 +26,11 @@ const Configs: IConfigs = {
  * 5、public/configs.js中的配置会覆盖源码中的配置项
  */
 export default _.merge<IConfigs, IConfigs>(Configs, _.cloneDeep(window._configs || {}))
+
+
+function getDebug() {
+    if (localStorage.getItem('debug') === 'true') {
+        return true;
+    }
+    return import.meta.env.VITE_DEBUG || false;
+}

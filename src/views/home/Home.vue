@@ -12,7 +12,7 @@ refreshHelper.onRefresh(v => { // 监听处理页面的下拉刷新事件
 <template>
   <div>
     <p class="tw-py-10 tw-border">首页</p>
-    <p class="tw-border" v-for="item in 20">test - {{ item }}</p>
+    <p class="tw-border" v-for="item in 30">test - {{ item }}</p>
     <p>end</p>
   </div>
 </template>
