@@ -1,0 +1,1 @@
+System.register(["./useRefresh-legacy-ee70344b.js","./index-legacy-5b7b006d.js"],(function(e,n){"use strict";var t;return{setters:[function(e){t=e.u},null],execute:function(){e("default",{__name:"Category",setup:function(e){var n=t();return n.onRefresh((function(e){console.log("下拉刷新触发"),n.toggleLoading(!1)})),function(e,n){return" 分类页面 "}}})}}}));

@@ -1,0 +1,1 @@
+import{u as o}from"./useRefresh-f06aa801.js";import"./index-31c171b2.js";const _={__name:"Category",setup(s){const e=o();return e.onRefresh(r=>{console.log("下拉刷新触发"),e.toggleLoading(!1)}),(r,t)=>" 分类页面 "}};export{_ as default};
