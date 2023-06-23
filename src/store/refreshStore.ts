@@ -1,16 +1,15 @@
 import {defineStore} from "pinia";
 import _ from "lodash";
+import {ref} from "vue";
 
-export const useRefreshStore = defineStore('pageRefresh', {
-    state() {
-        return {
-            loading: false,
-        }
-    },
-    actions: {
+export const useRefreshStore = defineStore('useRefreshStore', () => {
+    const loading = ref<boolean>(false)
+    return {
+        loading,
         toggleLoading(val?: boolean) {
-            val = _.isBoolean(val) ? val : !this.loading;
-            this.loading = val;
+            val = _.isBoolean(val) ? val : !loading.value;
+            loading.value = val;
         }
     }
+
 })

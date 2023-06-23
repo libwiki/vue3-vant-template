@@ -1,10 +1,12 @@
 import {useSimpleFormMeta} from "@/hooks/useSimpleFormMeta";
 import {isEmpty, isPhone} from "@/utils/helpers";
-import User, {EGender, IUserLoginFormData} from "@/api/modules/User";
+import User from "@/api/modules/User";
 import {useRouter} from "vue-router";
 import Config from "@/config/Configs";
 import AuthHelpers from "@/utils/AuthHelpers";
 import {showToast} from "vant";
+import {IUserLoginFormData} from "@/api/entity/user";
+import {EGender} from "@/api/entity/globals";
 
 
 /**
@@ -108,7 +110,7 @@ export function useLogin() {
          * @param replace {boolean} 登录成功是否自动跳转首页
          * @returns {Promise<boolean>}
          */
-        async wxLogin(code:string, replace = true) {
+        async wxLogin(code: string, replace = true) {
             try {
                 if (isEmpty(code)) {
                     throw new Error("微信登录失败...")

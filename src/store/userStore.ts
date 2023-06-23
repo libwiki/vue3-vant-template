@@ -1,7 +1,8 @@
 import {defineStore} from "pinia";
 import {reactive} from "vue";
-import {EGender, IUserInfo} from "@/api/modules/User";
 import AuthHelpers from "@/utils/AuthHelpers";
+import {EGender} from "@/api/entity/globals";
+import {IUserInfo} from "@/api/entity/user";
 
 // 用户登录信息
 
