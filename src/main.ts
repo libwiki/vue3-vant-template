@@ -1,6 +1,8 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import Vant from 'vant';
+import '@vant/touch-emulator';
+import "nprogress/nprogress.css"
 import "./styles/preflight.css"
 import 'vant/lib/index.css';
 import router from './router'

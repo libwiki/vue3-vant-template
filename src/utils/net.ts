@@ -3,6 +3,8 @@ import Config from "../config/Configs";
 import Configs from "../config/Configs";
 import AuthHelpers from "@/utils/AuthHelpers";
 import router from "@/router";
+import nProgress from "nprogress";
+import {useGlobalStateStore} from "@/store/globalStateStore";
 
 // 创建一个 axios请求实例（用于接口的数据请求工具）
 const service = axios.create({
@@ -18,6 +20,9 @@ const service = axios.create({
 // 发送请求的前置处理
 service.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+        nProgress.start()
+        const globalStateStore = useGlobalStateStore()
+        globalStateStore.toggleLoading(true);
         if (!config.params) {
             config.params = {}
         }
@@ -35,6 +40,7 @@ service.interceptors.request.use(
         return config;
     },
     (error: any) => {
+        nProgress.done()
         return Promise.reject(error);
     }
 );
@@ -45,6 +51,9 @@ let retryRequests: any[] = [];
 // 获取到请求后的后置处理
 service.interceptors.response.use(
     (response: AxiosResponse) => {
+        nProgress.done()
+        const globalStateStore = useGlobalStateStore()
+        globalStateStore.toggleLoading(false);
         if (response.status === 200) { // http状态码===200 成功获取到数据
             if (response.data && response.data.result) { // 接口数据中的data存在并且 服务器操作成功（data.success是服务器自定义的参数）
                 return response.data;
@@ -56,6 +65,9 @@ service.interceptors.response.use(
         }
     },
     (error: any) => { // 下列进行token的自动刷新处理（可选）
+        nProgress.done()
+        const globalStateStore = useGlobalStateStore()
+        globalStateStore.toggleLoading(false);
         const response = error.response || {}
         //如果是刷新token接口请求失败
         if (response.config && response.config.url && response.config.url.indexOf("/token/refresh") !== -1) {

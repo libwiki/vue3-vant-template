@@ -9,6 +9,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
             title: "登录", // 标题栏
             noToken: true, // 无需登录验证的界面
+            hideNavbar: true, // 不显示顶部条
             pageBgColor, // 页面背景色（会覆盖pageStyle的backgroundColor）
 
         },

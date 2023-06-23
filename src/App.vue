@@ -9,30 +9,30 @@ import TabbarConfig from "./config/TabbarConfig";
 import AuthHelpers from "@/utils/AuthHelpers";
 import {refreshSubInstance} from "@/rxjs/RefreshSubject";
 
-const $route = useRoute();
+const route = useRoute();
 AuthHelpers.syncUserinfo(false); // 初始化登录用户的信息到store中
 useIosCompatibility(); // ios适配
 
 
 // 是否有顶部导航栏
 const hasNavBar = computed(() => {
-  return isTrue($route.meta.navbar);
+  return !isTrue(route.meta.hideNavbar);
 });
 
 
 // 是否显示返回按钮
 const showBack = computed(() => {
-  return isTrue($route.meta.showBack);
+  return isTrue(route.meta.showBack);
 })
 // 是否有底部菜单栏
 const hasTabBar = computed(() => {
-  return isTrue($route.meta.tabbar);
+  return isTrue(route.meta.tabbar);
 });
 const routeName = computed(() => {
-  return $route.name;
+  return route.name;
 })
 const bodyStyle = computed(() => {
-  const meta = $route.meta || {};
+  const meta = route.meta || {};
   const styles = meta.pageStyle || {};
   if (meta.pageBgColor) {
     styles.backgroundColor = meta.pageBgColor;
@@ -84,7 +84,7 @@ const onBack = () => {
 <template>
   <van-pull-refresh
       class="tw-px-position-center tw-min-h-screen"
-      :disabled="isFalse($route.meta.refresh)"
+      :disabled="isFalse(route.meta.refresh)"
       v-model="refreshStore.loading"
       @refresh="onRefresh">
     <van-config-provider
@@ -103,7 +103,7 @@ const onBack = () => {
         </template>
         <template #title>
           <span class="tw-text-dark tw-text-17 tw-font-normal tw-leading-26">
-            {{ $route.query._title || $route.meta.title }}
+            {{ route.query._title || route.meta.title }}
           </span>
         </template>
       </van-nav-bar>
@@ -114,7 +114,7 @@ const onBack = () => {
       <van-tabbar
           class="tw-mx-position-center tw-max-w-view-port"
           v-model="tabBarIndex" v-if="hasTabBar"
-          @change="i=>$router.push({name:(TabbarConfig.data||[{}])[i].routeName})">
+          @change="i=>router.push({name:(TabbarConfig.data||[{}])[i].routeName})">
         <van-tabbar-item v-for="(item,i) of TabbarConfig.data||[]" :key="i">
           <span :class="i===tabBarIndex?'tw-text-dark':'tw-text-light'">{{ item.title }}</span>
           <template #icon>
